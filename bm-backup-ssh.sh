@@ -3,8 +3,8 @@
 #
 # Author: Mr Xhark -> @xhark
 # License : Creative Commons http://creativecommons.org/licenses/by-nd/4.0/deed.fr
-# Website : http://blogmotion.fr/systeme/backup-bm-blog-13132 
-VERSION="2023.01.10"
+# Website : https://blogmotion.fr/systeme/backup-bm-blog-13132 
+VERSION="2026.07.12"
 
 #============================#
 #    VARIABLES A MODIFIER    #
@@ -57,7 +57,7 @@ COUL_BG_ROSE="\033[45m"
 if [[ $# != "$ARGS" || (${TYPEBACKUP} != "MENSUEL" && ${TYPEBACKUP} != "HEBDO" && ${TYPEBACKUP} != "LIVE" && ${TYPEBACKUP} != "BDD") ]]
 then
 	if [[  ${TYPEBACKUP} == "LIVE" ]]; then
-		SUFFIXE=''		
+		SUFFIXE=''
 	fi
 
         echo -e "${COUL_JAUNE}Utilisation: `basename $0` TYPE_DU_BACKUP ${COUL_RESET} \n"
@@ -116,8 +116,7 @@ else
 		
 		# si version de TAR >= 1.30 (https://bit.ly/tar-options)
 		if verMinimale $TARVERSION "1.30"; then
-			tar $TAR_OPT ${DST_BACKUP}/${MON_GZ} \ 
-				--exclude "${DST_BACKUP}" 							\
+			tar tar -c -f ${DST_BACKUP}/${MON_GZ} $TAR_OPT --exclude "${DST_BACKUP}" \
 				--exclude "/var/www/html/wp-content/backup" 		\
 				--exclude "/var/www/html/wp-content/cache"  		\
 				--exclude "/var/www/html/un_repertoire_a_exclure"	\
